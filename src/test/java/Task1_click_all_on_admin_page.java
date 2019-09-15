@@ -8,14 +8,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class Task1_click_all_on_admin_page {
     private WebDriver driver;
+    String login = "admin";
+    String psw = "admin";
+    String baseURL = "http://localhost/litecart/admin/";
 
     @Before
     public void setup(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @After
@@ -24,15 +30,9 @@ public class Task1_click_all_on_admin_page {
     }
 
     @Test
-    public void googleTest() throws Exception{
+    public void adminPageTest() throws Exception{
 
-        driver.get("http://localhost/litecart/admin/");
-
-        driver.findElement(By.name("username")).sendKeys("admin");
-
-        driver.findElement(By.name("password")).sendKeys("admin");
-
-        driver.findElement(By.name("login")).click();
+        performLogin(driver, login, psw);
         isElementPresent(driver, By.cssSelector("h1"));
 
         driver.findElement(By.xpath("//span[text()=\"Appearence\"]")).click();
@@ -144,8 +144,6 @@ public class Task1_click_all_on_admin_page {
         driver.findElement(By.xpath("//span[text()=\"vQmods\"]")).click();
         driver.findElement(By.id("doc-vqmods")).click();
 
-
-
     }
     boolean isElementPresent(WebDriver driver, By locator) {
         try { driver.findElement(locator);
@@ -154,5 +152,18 @@ public class Task1_click_all_on_admin_page {
         } catch (NoSuchElementException ex) {
             System.out.println(locator + " not found");
             return false; } }
+
+    void performLogin (WebDriver drv, String login, String psw) {
+        driver.get(baseURL);
+        if (isElementPresent(drv,By.id("\"box-apps-menu-wrapper\""))) {
+            return;
+        } else {
+            driver.findElement(By.name("username")).sendKeys(login);
+
+            driver.findElement(By.name("password")).sendKeys(psw);
+
+            driver.findElement(By.name("login")).click();
+        }
+    }
 
 }
