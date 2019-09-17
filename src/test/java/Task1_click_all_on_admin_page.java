@@ -1,11 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -15,7 +15,7 @@ public class Task1_click_all_on_admin_page {
     private WebDriver driver;
     String login = "admin";
     String psw = "admin";
-    String baseURL = "http://localhost/litecart/admin/";
+    String baseURL = "http://localhost/litecart";
 
     @Before
     public void setup(){
@@ -30,92 +30,91 @@ public class Task1_click_all_on_admin_page {
     }
 
     @Test
-    public void adminPageTest() throws Exception{
+    public void adminPageTest() {
 
         performLogin(driver, login, psw);
-        isElementPresent(driver, By.cssSelector("h1"));
+        Assert.assertTrue(isElementPresent(driver, By.cssSelector("/h1")));
+
 
         driver.findElement(By.xpath("//span[text()=\"Appearence\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
 
         driver.findElement(By.xpath("//span[text()=\"Template\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.xpath("//span[text()=\"Logotype\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
 
         driver.findElement(By.xpath("//span[text()=\"Catalog\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-catalog")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-product_groups")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-option_groups")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-manufacturers")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-suppliers")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-delivery_statuses")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-sold_out_statuses")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-quantity_units")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-csv")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.xpath("//span[text()=\"Countries\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.xpath("//span[text()=\"Currencies\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.xpath("//span[text()=\"Customers\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-customers")).click();
         driver.findElement(By.id("doc-csv")).click();
         driver.findElement(By.id("doc-newsletter")).click();
 
         driver.findElement(By.xpath("//span[text()=\"Languages\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-languages")).click();
         driver.findElement(By.id("doc-storage_encoding")).click();
 
 
         driver.findElement(By.xpath("//span[text()=\"Modules\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.xpath("//span[text()=\"Background Jobs\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.xpath("//span[text()=\"Customer\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.xpath("//span[text()=\"Shipping\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.xpath("//span[text()=\"Payment\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.xpath("//span[text()=\"Order Total\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.xpath("//span[text()=\"Order Success\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.xpath("//span[text()=\"Order Action\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.xpath("//span[text()=\"Orders\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-orders")).click();
         driver.findElement(By.id("doc-order_statuses")).click();
 
         driver.findElement(By.xpath("//span[text()=\"Pages\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.xpath("//span[text()=\"Reports\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
         driver.findElement(By.id("doc-monthly_sales")).click();
         driver.findElement(By.id("doc-most_sold_products")).click();
         driver.findElement(By.id("doc-most_shopping_customers")).click();
 
         driver.findElement(By.xpath("//span[text()=\"Settings\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.id("doc-store_info")).click();
         driver.findElement(By.id("doc-defaults")).click();
@@ -127,7 +126,7 @@ public class Task1_click_all_on_admin_page {
         driver.findElement(By.id("doc-security")).click();
 
         driver.findElement(By.xpath("//span[text()=\"Slides\"]")).click();
-        isElementPresent(driver, By.cssSelector("h1"));
+
 
         driver.findElement(By.xpath("//span[text()=\"Tax\"]")).click();
         driver.findElement(By.id("doc-tax_classes")).click();
@@ -155,15 +154,12 @@ public class Task1_click_all_on_admin_page {
 
     void performLogin (WebDriver drv, String login, String psw) {
         driver.get(baseURL);
-        if (isElementPresent(drv,By.id("\"box-apps-menu-wrapper\""))) {
-            return;
-        } else {
+        if (isElementPresent(drv,By.id("\"box-apps-menu-wrapper\"")))   return;
+
             driver.findElement(By.name("username")).sendKeys(login);
-
             driver.findElement(By.name("password")).sendKeys(psw);
-
             driver.findElement(By.name("login")).click();
-        }
+
     }
 
 }
