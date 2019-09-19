@@ -26,6 +26,7 @@ public class Task1_click_all_on_admin_page {
 
     @After
     public void cleanup(){
+        System.out.println("test");
         driver.quit();
     }
 
